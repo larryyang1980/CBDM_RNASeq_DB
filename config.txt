@@ -1,0 +1,61 @@
+#
+# Sequencing-specific information
+#
+
+# Sample list
+#FLIST=/groups/cbdm-db/rnaseq_db/Sample_List_Info/sample_list.txt
+
+# directory for FASTQ files
+FASTQ_DIR=/groups/cbdm-db/rnaseq_db/FASTQ
+
+# suffix for fastq:  fq.gz or fastq.gz or fastq  or fq
+FASTQ_SUFFIX=fastq.gz
+
+# stranded or nonstranded. #0: nonstranded;  1: forward strandness;  2: reverse strandness
+STRAND=0
+
+SEQUENCE_DEPTH=regular
+
+# sequencinF type: pair or single
+SEQUENCE_TYPE=pair
+
+LOG_DIR=/groups/cbdm-db/rnaseq_db/logs
+OUTPUT_DIR=/groups/cbdm-db/rnaseq_db/alignment_output
+OUTPUT_TMP_DIR=/groups/cbdm-db/rnaseq_db/alignment_output_tmp
+FASTQC_DIR=/groups/cbdm-db/rnaseq_db/fastqc
+
+# COMPREHENSIVE_QC: true if performed; false if no individual sample QC
+# # !!!Comprehensive sample QC takes much more time than read mapping and counting
+COMPREHENSIVE_QC=true
+
+#
+# Species-specific GenomeIndex and GTF
+#
+
+#Reference Genome
+GENOME_FASTA=/groups/cbdm-db/ly82/RNASeq_pipeline/STAR_index/GRCm38.primary_assembly.genome.fa
+GENOME_INDEX=/groups/cbdm-db/ly82/RNASeq_pipeline/STAR_index/mm10_gencode_vM16
+GENOME_ANNOTATION=/groups/cbdm-db/ly82/RNASeq_pipeline/annotation
+GTF_FILE=/groups/cbdm-db/ly82/RNASeq_pipeline/annotation/gencode.vM16.primary_assembly.annotation.no_rRNA.gtf
+
+#
+###Software specific parameters
+##
+#Mapping_PARAMETER=
+Mapping_PARAMETER=--alignSJDBoverhangMin 1 --outFilterMismatchNoverLmax 0.05 --outFilterScoreMinOverLread 0.90 --outFilterMatchNminOverLread 0.90 --alignIntronMax 1000000
+FEATURECOUNTS_OVERLAP=-t exon --minOverlap 5 --ignoreDup
+
+
+#
+##Software locations
+#
+#STAR_RNA=/hpc/grid/shared/ngsapp/STAR_2.4.0k/bin/Linux_x86_64
+#FEATURECOUNTS=/hpc/grid/shared/ngsapp/subread-1.4.6/bin
+#RSeQC=/afs/grid.pfizer.com/mm/proj01/app/python/bin
+#VARSCAN_JAR=/hpc/grid/shared/ngsapp/bin/VarScan.v2.4.0.jar
+QC_before_mapping_software=seq/fastqc/0.11.3
+Mapping_software=seq/STAR/2.5.3a
+Count_software=seq/subread/1.5.1
+Samtools=seq/samtools/1.3
+QC_software=seq/rseqc/2.6.2
+MultiQC=seq/multiqc/0.9

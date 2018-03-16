@@ -1,0 +1,19 @@
+#!/bin/bash
+
+FLIST=$1
+OUTPUT_DIR=$2
+OUTPUT_TMP_DIR=$3
+RUN_ID=$4
+SPECIES=$5
+
+while IFS=$'\t' read -r -a Array
+do
+	SAMPLE_ID=${Array[1]}
+	cp $OUTPUT_TMP_DIR/$RUN_ID/$SPECIES/$SAMPLE_ID/${SAMPLE_ID}.sortedByCoord.bam $OUTPUT_DIR/$RUN_ID/$SPECIES/BAMs/$SAMPLE_ID/
+	cp $OUTPUT_TMP_DIR/$RUN_ID/$SPECIES/$SAMPLE_ID/${SAMPLE_ID}.sortedByCoord.bam.bai $OUTPUT_DIR/$RUN_ID/$SPECIES/BAMs/$SAMPLE_ID/
+	cp $OUTPUT_TMP_DIR/$RUN_ID/$SPECIES/$SAMPLE_ID/${SAMPLE_ID}.featureCounts.txt $OUTPUT_DIR/$RUN_ID/$SPECIES/Count_Tables/$SAMPLE_ID/
+	
+done < $FLIST
+
+cp $OUTPUT_TMP_DIR/$RUN_ID/$SPECIES/multiqc_${RUN_ID}_${SPECIES}_data/multiqc_star.txt $OUTPUT_DIR/$RUN_ID/$SPECIES/QC_data/
+cp $OUTPUT_TMP_DIR/$RUN_ID/$SPECIES/multiqc_${RUN_ID}_${SPECIES}_data/multiqc_featureCounts.txt $OUTPUT_DIR/$RUN_ID/$SPECIES/QC_data/

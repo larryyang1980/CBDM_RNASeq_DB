@@ -1,0 +1,62 @@
+#
+# Sequencing-specific information
+#
+
+# Sample list
+#FLIST=/n/groups/cbdm-db/rnaseq_db/Sample_List_Info/sample_list_human.txt
+
+# directory for FASTQ files
+FASTQ_DIR=/n/groups/cbdm-db/rnaseq_db/FASTQ
+
+# suffix for fastq:  fq.gz or fastq.gz or fastq  or fq
+FASTQ_SUFFIX=fastq.gz
+
+# stranded or nonstranded. #0: nonstranded;  1: forward strandness;  2: reverse strandness
+STRAND=0
+
+SEQUENCE_DEPTH=regular
+
+# sequencinF type: pair or single
+SEQUENCE_TYPE=pair
+
+LOG_DIR=/n/groups/cbdm-db/rnaseq_db/logs
+OUTPUT_DIR=/n/groups/cbdm-db/rnaseq_db/output/alignment
+OUTPUT_TMP_DIR=/n/groups/cbdm-db/rnaseq_db/output_tmp/alignment
+#FASTQC_DIR=/n/groups/cbdm-db/rnaseq_db/fastqc
+
+SCRIPT_DIR=/n/groups/cbdm-db/ly82/RNASeq_pipeline/STAR_index
+
+# COMPREH
+ENSIVE_QC: true if performed; false if no individual sample QC
+# # !!!Comprehensive sample QC takes much more time than read mapping and counting
+COMPREHENSIVE_QC=true
+
+#
+# Species-specific GenomeIndex and GTF
+#
+
+#Reference Genome
+GENOME_FASTA=/n/groups/cbdm-db/ly82/RNASeq_pipeline/STAR_index/GRCh38.primary_assembly.genome.fa
+GENOME_INDEX=/n/groups/cbdm-db/ly82/RNASeq_pipeline/STAR_index/hg38_gencode_v27
+GENOME_ANNOTATION=/n/groups/cbdm-db/ly82/RNASeq_pipeline/annotation
+GTF_FILE=/n/groups/cbdm-db/ly82/RNASeq_pipeline/annotation/gencode.v27.primary_assembly.annotation.no_rRNA.gtf
+
+#
+###Software specific parameters
+##
+#Mapping_PARAMETER=
+Mapping_PARAMETER=--alignSJDBoverhangMin 1 --outFilterMismatchNoverLmax 0.05 --outFilterScoreMinOverLread 0.90 --outFilterMatchNminOverLread 0.90 --alignIntronMax 1000000
+FEATURECOUNTS_OVERLAP=-t exon --minOverlap 5 --ignoreDup
+
+
+#
+##Software locations
+#
+QC_before_mapping_software=fastqc/0.11.5
+Mapping_software=star/2.5.4a
+Count_software=subread/1.5.1
+Samtools=samtools/1.3.1
+QC_software=rseqc/2.6.4
+MultiQC=multiqc/1.3
+GCC=gcc/6.2.0
+PYTHON=python/2.7.12
