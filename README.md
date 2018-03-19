@@ -1,3 +1,5 @@
+The scripts for RNASeq DB analysis pipelines
+
 # Perform Alignment:
 	Usage: sample_verification.sh <RUN_ID> (e.g. sample_verification.sh RUN001)
 	
